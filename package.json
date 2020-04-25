@@ -1,0 +1,22 @@
+{
+  "name": "dir",
+  "version": "1.0.0",
+  "description": "my-bank-api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucaslnv/my-bank-api.git"
+  },
+  "author": "Lucas Vieira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lucaslnv/my-bank-api/issues"
+  },
+  "homepage": "https://github.com/lucaslnv/my-bank-api#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
