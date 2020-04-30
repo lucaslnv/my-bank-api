@@ -1,13 +1,30 @@
 const express = require('express');
-import fs from 'fs';
-import { promisify } from 'util';
-import accountRouter from './routes/account.js';
+const fs = require('fs');
+const { promisify } = require('util');
+const accountRouter = require('./routes/account.js');
 
 const app = express();
 const port = 3005;
 
-app.get('/', (req, res) => res.send('Hello World') );
+const exists = promisify(fs.exists);
+const writeFile = promisify(fs.writeFile);
 
-app.listen(port, () => {
-    console.log(`App listening on port ${port}`);
-});
+app.use(express.json());
+
+global.fileName = 'account.json';
+
+app.listen(port, async () => {
+    try {
+      const fileExists = await exists(global.fileName);
+      if (!fileExists) {
+        const initialJson = {
+          nextId: 1,
+          account: []
+        };
+        await writeFile(global.fileName, JSON.stringify(initialJson));
+      }
+    } catch (err) {
+        console.log(err.message);
+    }
+    console.log('Servidor rodando na porta '+port);
+  });
